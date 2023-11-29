@@ -1,20 +1,36 @@
 {
-  "manifest_version": 2,
-
-  "name": "Malicious Web Content Detector",
-  "description": "This extension helps you avoid accessing malicious websites by giving you a chance to analyze the website before you interact with it.",
+  "manifest_version": 3,
+  "name": "Instant Data Scraper",
   "version": "1.0",
-
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
-  },
-    "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
+  "description": "Instant Data Scraper extracts data from web pages and exports it as Excel or CSV files.",
   "permissions": [
     "activeTab",
-    "tabs",
-    "https://ajax.googleapis.com/",
-    "tabs",
-    "<all_urls>"
+    "webRequest"
+  ],
+  "action": {
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "incognito": "split",
+  "background": {
+      "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "css": ["onload.css"],
+      "js": ["js/jquery-3.1.1.min.js", "js/sha256.min.js", "onload.js"]
+    }
   ]
 }

@@ -5,7 +5,7 @@ form {
     margin-right: -5px;
     margin-left: 5px;
 }
-.btn, .alert, #content {
+.btn, .alert {
     display: none;
 }
 body {

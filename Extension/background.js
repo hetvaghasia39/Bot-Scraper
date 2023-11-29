@@ -16,3 +16,8 @@ chrome.action.onClicked.addListener(function (e) {
       height: 650,
     });
 });
+
+// // background.js
+// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+//   chrome.tabs.executeScript(sender.tab.id, { file: 'onload.js' });
+// });

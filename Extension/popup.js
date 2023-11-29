@@ -1,34 +1,86 @@
-// Purpose - This file contains all the logic relevant to the extension such as getting the URL, calling the server
-// side clientServer.php which then calls the core logic.
+// Wait for the DOM to be ready
+$(document).ready(function() {
 
-function transfer(){	
-	var tablink;
-	chrome.tabs.getSelected(null,function(tab) {
-	   	tablink = tab.url;
-		$("#p1").text("The URL being tested is - "+tablink);
-
-		var xhr=new XMLHttpRequest();
-		params="url="+tablink;
-        // alert(params);
-		var markup = "url="+tablink+"&html="+document.documentElement.innerHTML;
-		xhr.open("POST","http://localhost/Malicious-Web-Content-Detection-Using-Machine-Learning/clientServer.php",false);
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhr.send(markup);
-		// Uncomment this line if you see some error on the extension to see the full error message for debugging.
-		// alert(xhr.responseText);
-		$("#div1").text(xhr.responseText);
-		return xhr.responseText;
-	});
-}
-
-
-$(document).ready(function(){
-    $("button").click(function(){	
-		var val = transfer();
+    // Try another table button
+    $('#wrongTable').click(function() {
+      $("table").css("background-color", "red");
     });
-});
-
-chrome.tabs.getSelected(null,function(tab) {
-   	var tablink = tab.url;
-	$("#p1").text("The URL being tested is - "+tablink);
-});
+  
+    // Locate "Next" button button
+    $('#nextButton').click(function() {
+      // Add your code here for the 'Locate "Next" button' button
+    });
+  
+    // Start crawling button
+    $('#startScraping').click(function() {
+      // Add your code here for the 'Start crawling' button
+    });
+  
+    // Stop crawling button
+    $('#stopScraping').click(function() {
+      // Add your code here for the 'Stop crawling' button
+    });
+  
+    // CSV button
+    $('#csv').click(function() {
+      // Add your code here for the 'CSV' button
+    });
+  
+    // XLSX button
+    $('#xlsx').click(function() {
+      // Add your code here for the 'XLSX' button
+    });
+  
+    // COPY ALL button
+    $('#copy').click(function() {
+      // Add your code here for the 'COPY ALL' button
+    });
+  
+    // EDIT AGENT button
+    $('#editPrecanned').click(function() {
+      // Add your code here for the 'EDIT AGENT' button
+    });
+  
+    // CREATE AGENT button
+    $('#createPrecanned').click(function() {
+      // Add your code here for the 'CREATE AGENT' button
+    });
+  
+    // Reset columns button
+    $('#resetColumns').click(function() {
+      // Add your code here for the 'Reset columns' button
+    });
+  
+    // Help/Feedback link
+    $('#help').click(function() {
+      // Add your code here for the 'Help/Feedback' link
+    });
+  
+    // Rate button
+    $('#rate').click(function() {
+      // Add your code here for the 'Rate' button
+    });
+  
+    // Rate Later button
+    $('#rateLater').click(function() {
+      // Add your code here for the 'Rate Later' button
+    });
+  
+    // Start clicking button
+    $('#startClicking').click(function() {
+      chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        var activeTab = tabs[0];
+        console.log('activeTab: ', activeTab)
+        chrome.tabs.sendMessage(activeTab.id, { action: 'clickAllButtons' }, function (e) {
+          console.log("Error", e)
+        });
+        console.log('message sent: ', activeTab)
+      });
+    });
+  
+    // Stop clicking button
+    $('#stopClicking').click(function() {
+      // Add your code here for the 'Stop clicking' button
+    });
+  });
+  
